@@ -1,6 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { handleGetOperation } from '../../../../handleOperation/handleOperation'
+import { apiLinks } from '../../../../handleOperation/apiLinks'
 
 const Product = () => {
+
+
+  useEffect(()=>{
+    const fetchProduct = async()=>{
+      console.log(apiLinks.getAllProduct);
+        const result= await handleGetOperation(apiLinks.getAllProduct)
+    }
+    fetchProduct()
+  },[])
+
   return (
     <div>
 
