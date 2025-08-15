@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { handleDeleteOperation, handleGetOperation } from '../../../../handleOperation/handleOperation'
 import { apiLinks } from '../../../../handleOperation/apiLinks'
+import { useNavigate } from 'react-router-dom'
 
 const Product = () => {
 
   const [formData,setFormData] = useState([])
+  const [count , setCount] = useState(1)
 
+ const navigate = useNavigate()
 
   useEffect(()=>{
     const fetchProduct = async()=>{
@@ -25,15 +28,20 @@ const Product = () => {
 
     }
     fetchProduct()
-  },[])
+  },[count])
 
 
   const handledDelete = async(id)=>{
-    alert(id)
-    const result = await handleDeleteOperation(apiLinks.deleteProduct(id))
+    
+    const isDelete = confirm("Do you want to delete ")
+    if(isDelete){
+      const result = await handleDeleteOperation(apiLinks.deleteProduct(id))
 
-    console.log(result);
-
+      if(result.status == 200){
+        setCount((prev)=>prev+1)
+        // location.href = '/admin/product'
+      }
+    }
   }
 
   return (

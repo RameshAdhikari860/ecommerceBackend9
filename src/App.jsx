@@ -6,6 +6,8 @@ import Product from './pages/admin/dashboard/product/Product'
 import Welcome from './pages/Welcome'
 import Greetings from './pages/Greetings'
 import TrialLayout from './components/TrialLayout'
+import Login from './pages/admin/auth/Login'
+import ProductCreate from './pages/admin/dashboard/product/ProductCreate'
 
 const App = () => {
   return (
@@ -19,8 +21,10 @@ const App = () => {
       <Route element={<Layout/>} >
             <Route path='/admin/' element={<Dashboard />} />
              <Route path="admin/product" element={<Product />} />
+             <Route path='admin/createproduct' element={<ProductCreate/>} />
       </Route>
 
+      <Route path='/admin/login' element={<Login/>}/>
       
       <Route element={<TrialLayout/>} >
           <Route path='/welcome' element={<Welcome/>}/>
